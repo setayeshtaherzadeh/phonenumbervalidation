@@ -1,0 +1,149 @@
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input-Validation</title>
+    <style >
+      @font-face {
+  font-family: vazir;
+  src: url(./font/Vazirmatn-FD-Medium.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Vazirmatn", sans-serif;
+  font-family: "vazir", sans-serif;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ebebeb;
+}
+.container {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+.pic-wrapper {
+  display: flex;
+  justify-content: center;
+}
+form {
+  width: 250px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.inp-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+img {
+  width: 250px;
+  height: 230px;
+  object-fit: cover;
+}
+label {
+  color: #333333;
+  font-weight: bold;
+}
+input {
+  background-color: #f5f5f5;
+  border: 0;
+  outline: 0;
+  height: 32px;
+  border-radius: 5px;
+  padding: 8px;
+  color: #333333;
+}
+input:hover,
+input:focus {
+  background-color: #f2f0f0;
+}
+input.error {
+  border: 2px solid #d63d3d;
+}
+small {
+  color: #d63d3d;
+  font-size: 12px;
+}
+button {
+  color: #fff;
+  background-color: #f9bd15;
+  border: 0;
+  outline: 0;
+  width: 100%;
+  padding: 4px 0px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.1s;
+}
+button:hover {
+  background-color: #dfaf2a;
+}
+    </style>
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- picture -->
+      <div class="pic-wrapper">
+        <img src="https://i.postimg.cc/9QpzGZk3/vector.png" alt="vector" />
+      </div>
+      <!-- form -->
+      <div class="form-wrapper">
+        <form action="#" method="get">
+          <div class="input-container">
+            <div class="inp-wrapper">
+              <label for="phone-number">شماره موبایل</label>
+              <input
+                type="text"
+                name="phone-number"
+                id="phone-number"
+                required
+                autocomplete="off"
+                pattern="09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}"
+              />
+            </div>
+            <small hidden> لطفا شماره موبایل را با فرمت درست وارد کنید</small>
+          </div>
+          <div class="btn-warpper"><button type="submit">ثبت</button></div>
+        </form>
+      </div>
+    </div>
+    <script>
+    // variable
+const phoneNumber = document.querySelector("input");
+const error = document.querySelector("small");
+
+// eventlistener
+phoneNumber.addEventListener("input", (e) => {
+  const { target } = e;
+  error.hidden = true;
+  // condition
+  if (target.validity.patternMismatch) {
+    error.hidden = false;
+    phoneNumber.classList.add("error");
+  } else {
+    phoneNumber.classList.remove("error");
+  }
+});
+    </script>
+  </body>
+</html>
